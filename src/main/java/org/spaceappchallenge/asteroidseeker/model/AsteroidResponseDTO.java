@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 public class AsteroidResponseDTO {
 
+    // TODO: change this file
     private String fullNameOfNEO;
     private String orbitId;
     private String designationCode;
