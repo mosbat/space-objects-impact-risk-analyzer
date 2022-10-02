@@ -20,6 +20,38 @@ public class AsteroidResponseDTO {
         this.fullNameOfNEO = fullNameOfNEO;
     }
 
+    public void setOrbitId(String orbitId) {
+        this.orbitId = orbitId;
+    }
+
+    public void setDesignationCode(String designationCode) {
+        this.designationCode = designationCode;
+    }
+
+    public void setDiameter(double diameter) {
+        this.diameter = diameter;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
+    public void setTimeOfCloseApproach(LocalDateTime timeOfCloseApproach) {
+        this.timeOfCloseApproach = timeOfCloseApproach;
+    }
+
+    public void setVelocity(double velocity) {
+        this.velocity = velocity;
+    }
+
+    public void setSigma(String sigma) {
+        this.sigma = sigma;
+    }
+
+    public void setOrbitClass(String orbitClass) {
+        this.orbitClass = orbitClass;
+    }
+
     public String getFullNameOfNEO() {
         return fullNameOfNEO;
     }
