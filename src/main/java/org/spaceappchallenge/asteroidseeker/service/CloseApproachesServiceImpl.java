@@ -4,6 +4,7 @@ import org.spaceappchallenge.asteroidseeker.model.AsteroidResponseDTO;
 import org.spaceappchallenge.asteroidseeker.repository.CloseApproachesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,7 +16,7 @@ public class CloseApproachesServiceImpl implements CloseApproachesService {
     CloseApproachesRepository closeApproachesRepository;
 
     @Override
-    public AsteroidResponseDTO findById(String designationCode) {
+    public Mono<List<AsteroidResponseDTO>> findById(String designationCode) {
         return closeApproachesRepository.findById(designationCode);
     }
 

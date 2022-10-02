@@ -8,11 +8,20 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import org.spaceappchallenge.asteroidseeker.JavaFXApp.StageReadyEvent;
+import org.spaceappchallenge.asteroidseeker.model.AsteroidResponseDTO;
+import org.spaceappchallenge.asteroidseeker.service.CloseApproachesService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 @Component
 public class StageInitializer implements ApplicationListener<StageReadyEvent> {
+
+    @Autowired
+    CloseApproachesService closeApproachesService;
 
     @Override
     public void onApplicationEvent(StageReadyEvent event) {
@@ -55,5 +64,8 @@ public class StageInitializer implements ApplicationListener<StageReadyEvent> {
 //Displaying the stage
         stage.show();
 
+        // example of an async call
+        Mono<List<AsteroidResponseDTO>> res = closeApproachesService.findById("99942");
+        res.subscribe(list -> list.forEach(System.out::println));
     }
 }

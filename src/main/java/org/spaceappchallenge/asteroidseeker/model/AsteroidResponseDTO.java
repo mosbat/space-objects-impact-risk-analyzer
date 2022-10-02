@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 
 public class AsteroidResponseDTO {
 
-    // TODO: change this file
     private String fullNameOfNEO;
     private String orbitId;
     private String designationCode;
@@ -86,5 +85,17 @@ public class AsteroidResponseDTO {
 
     public String getSigma() {
         return sigma;
+    }
+
+    @Override
+    public String toString() {
+        return fullNameOfNEO + ", "
+                + designationCode + ", "
+                + orbitId + ", "
+                + diameter + ", "
+                + distance + ", "
+                + timeOfCloseApproach + ", "
+                + velocity + ", "
+                + orbitClass + ", ";
     }
 }
