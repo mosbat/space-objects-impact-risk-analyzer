@@ -1,29 +1,37 @@
 package org.spaceappchallenge.asteroidseeker;
 
 import javafx.application.Application;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
+import javafx.application.Platform;
 import javafx.stage.Stage;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ApplicationEvent;
+import org.springframework.context.ConfigurableApplicationContext;
 
 public class JavaFXApp extends Application {
+    private ConfigurableApplicationContext applicationContext;
+
     @Override
-    public void start(Stage primaryStage) {
-
-        Group group = new Group();
-        StackPane pane = new StackPane();
-        group.getChildren().add(pane);
-//Setting the title to Stage
-        primaryStage.setTitle("Sample application");
-        Scene scene = new Scene(group, 600, 300);
-//Setting the scene to Stage
-        primaryStage.setScene(scene);
-
-//Displaying the stage
-        primaryStage.show();
+    public void init() {
+        applicationContext = new SpringApplicationBuilder(AsteroidseekerApplication.class).run();
+    }
+    @Override
+    public void start(Stage stage) {
+        applicationContext.publishEvent(new StageReadyEvent(stage));
     }
 
-    public static void runJavaFX(String[] args) {
-        launch(args);
+    @Override
+    public void stop() {
+        applicationContext.close();
+        Platform.exit();
+    }
+
+    static class StageReadyEvent extends ApplicationEvent {
+        public StageReadyEvent(Stage stage) {
+            super(stage);
+        }
+
+        public Stage getStage() {
+            return ((Stage) getSource());
+        }
     }
 }

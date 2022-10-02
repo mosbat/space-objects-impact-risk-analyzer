@@ -16,6 +16,10 @@ public class AsteroidResponseDTO {
     private String orbitClass;
 
 
+    public void setFullNameOfNEO(String fullNameOfNEO) {
+        this.fullNameOfNEO = fullNameOfNEO;
+    }
+
     public String getFullNameOfNEO() {
         return fullNameOfNEO;
     }
